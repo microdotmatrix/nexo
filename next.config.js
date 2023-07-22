@@ -7,8 +7,11 @@ const nextConfig = {
       'lh3.googleusercontent.com',
       'dummyimage.com',
       'images.unsplash.com',
-      'via.placeholder.com'
+      'via.placeholder.com',
+      'www.notion.so',
+      'notion.so',
     ],
+    formats: ['image/avif', 'image/webp']
   },
   experimental: {
     serverActions: true,
