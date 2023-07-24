@@ -35,3 +35,10 @@ export const meta = {
     linkedin: "https://www.linkedin.com/in/therealjohnpolinski",
   }
 }
+
+export const useOfficialNotionAPI =
+  false ||
+  (process.env.USE_OFFICIAL_NOTION_API === 'true' && process.env.NOTION_TOKEN)
+
+export const isDev =
+  process.env.NODE_ENV === 'development' || !process.env.NODE_ENV

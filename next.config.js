@@ -18,7 +18,7 @@ const nextConfig = {
   },
   transpilePackages: [
     '@iconify/react',
-  ]
+  ],
 }
 
 module.exports = nextConfig

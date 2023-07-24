@@ -2,7 +2,6 @@
 
 import { useEffect } from 'react';
 import { useCookieManager } from '@/utils/storage';
-import { Icon } from '@iconify/react';
 
 const TokenInit = ({ token }) => {
   const cookieManager = useCookieManager('bearerToken');
@@ -11,7 +10,7 @@ const TokenInit = ({ token }) => {
   }, [token]);
   return (
     <>
-      {token ? <Icon icon="mdi:check" width="2rem" /> : <Icon icon="mdi:close" width="2rem" />}
+      {token ? <span className="i-mdi-check xl" /> : <span className="i-mdi-close xl" />}
     </>
   );
 }

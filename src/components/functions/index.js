@@ -1,3 +1,4 @@
+export { default as ClientProvider } from './query-client';
 export { default as CloseDialog } from './close-dialog';
 export { default as Fonts } from './load-fonts';
 export { default as RefreshOnFocus } from './refresh-on-focus';
