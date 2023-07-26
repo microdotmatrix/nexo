@@ -1,14 +1,17 @@
 "use client"
 
-import ReactPlayer from 'react-player';
+import { Suspense } from 'react';
+import { Icon } from '@/components/ui';
+import { useIsMounted } from 'usehooks-ts';
 
 const Video = ({ mediaItem }) => {
-  return (
-    <div>
-      <video controls width="500">
-        <source src={mediaItem.baseUrl || null} type="video/mp4" />
-      </video>
-    </div>
+  const isMounted = useIsMounted();
+
+  return isMounted && (
+    <video controls autoPlay muted className="object-contain object-center w-fit" style={{ maxHeight: '75vh' }}>
+      <source src={`${mediaItem.baseUrl}=dv` || null} type="video/mp4" />
+      <Icon icon="mdi:video-image" className="text-2xl" />
+    </video>
   )
 }
 

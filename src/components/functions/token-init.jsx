@@ -3,14 +3,16 @@
 import { useEffect } from 'react';
 import { useCookieManager } from '@/utils/storage';
 
-const TokenInit = ({ token }) => {
+const TokenInit = ({ bearerToken, tokenUpdate }) => {
   const cookieManager = useCookieManager('bearerToken');
   useEffect(() => {
-    cookieManager.set(token);
-  }, [token]);
+    if (tokenUpdate) {
+      cookieManager.set(bearerToken);
+    }
+  }, [bearerToken]);
   return (
     <>
-      {token ? <span className="i-mdi-check xl" /> : <span className="i-mdi-close xl" />}
+      {bearerToken ? <span className="i-mdi-check xl" /> : <span className="i-mdi-close xl" />}
     </>
   );
 }

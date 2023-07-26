@@ -24,22 +24,32 @@ export default async function AlbumLayout({ children, params }) {
   }
 
   return (
-    <Suspense fallback={<div className="i-svg-spinners-pulse-rings-multiple text-4xl text-white" />}>
-      <header className="relative w-full h-[540px] z-1">
-        <Image
-          src={album.coverPhotoBaseUrl}
-          alt={album.title}
-          width="2200"
-          height="2400"
-          className="object-cover w-1/2 h-full object-top absolute inset-x-1/8 top-8 z-0"
-          quality={100}
-        />
-        <h1 className="absolute z-1 right-12 bottom-8">{album.title}</h1>
-      </header>
-
-      <div className="py-12">
-        {children}
-      </div>
-    </Suspense>
+    <>
+      <Suspense fallback={
+        <header className="relative w-full h-[540px] z-1">
+          <div className="bg-gray-200 blur-lg animate-pulse w-1/2 h-full absolute inset-x-1/8 top-8 z-0" />
+          <h1 className="text-gray-200 animate-pulse text-right absolute z-1 right-12 bottom-8">
+            Loading...
+          </h1>
+        </header>
+      }>
+        <header className="relative w-full h-[540px] z-1">
+          <Image
+            src={album.coverPhotoBaseUrl}
+            alt={album.title}
+            width="2200"
+            height="2400"
+            className="w-1/2 h-full object-cover object-top-center absolute inset-x-1/8 top-8 z-0"
+            quality={100}
+            priority={true}
+          />
+          <h1 className="absolute z-1 right-12 bottom-8">{album.title}</h1>
+        </header>
+  
+        <div className="py-12">
+          {children}
+        </div>
+      </Suspense>
+    </>
   )
 }

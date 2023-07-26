@@ -10,6 +10,7 @@ const nextConfig = {
       'via.placeholder.com',
       'www.notion.so',
       'notion.so',
+      'wsrv.nl'
     ],
     formats: ['image/avif', 'image/webp']
   },
@@ -17,7 +18,8 @@ const nextConfig = {
     serverActions: true,
   },
   transpilePackages: [
-    '@iconify/react',
+    '@iconify/json',
+    '@ariakit/react'
   ],
 }
 

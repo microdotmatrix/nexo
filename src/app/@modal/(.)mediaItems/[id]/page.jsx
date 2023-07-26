@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { getGoogleApiToken, getGoogleMediaItem } from "@/lib/google/api";
 
-import { PhotoElement } from './components';
+import { PhotoModal, PhotoElement } from './components';
 
 export const getImage = async ({ mediaItemId }) => {
   const bearerToken = await getGoogleApiToken();
@@ -20,7 +20,9 @@ export default async function MediaItem({ params }) {
   
   return (
     <Suspense>
-      <PhotoElement mediaItem={mediaItem} />
+      <PhotoModal>
+        <PhotoElement mediaItem={mediaItem} />
+      </PhotoModal>
     </Suspense>
   )
 }

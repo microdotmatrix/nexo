@@ -86,3 +86,62 @@ export const useInfiniteScroll = (option) => {
   );
   return { ref, observer: observer.current };
 };
+
+export function useScrollIntoView(element, container) {
+  requestAnimationFrame(() => {
+    if (element) {
+      const offset = element.offsetTop - container.scrollTop;
+      container.scrollBy({ top: offset });
+    }
+  });
+}
+
+export function useIsMountedRef() {
+  const isMounted = useRef(false);
+
+  useEffect(() => {
+    isMounted.current = true;
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
+
+  return isMounted;
+}
+
+/**
+ * Similarly to the life-cycle method componentDidMount, useComponentDidMount
+ * will be invoked after the component has mounted, and only the initial mount.
+ * @param callback Defines a callback to invoke once the component has
+ * initially mounted.
+ * @example
+ * function Playground({active}) {
+ *  useComponentDidMount(() => {
+ *    if (active) {
+ *      console.warning(`Component has mounted.`);
+ *    }
+ *  });
+ *
+ *  return null;
+ * }
+ */
+export function useComponentDidMount(callback) {
+  const isAfterInitialMount = useIsMountedRef();
+  const hasInvokedLifeCycle = useRef(false);
+
+  if (isAfterInitialMount && !hasInvokedLifeCycle.current) {
+    hasInvokedLifeCycle.current = true;
+    return callback();
+  }
+}
+
+export function isElementInViewport(element) {
+  const { top, left, bottom, right } = element.getBoundingClientRect();
+
+  return (
+    top >= 0 &&
+    right <= window.innerWidth &&
+    bottom <= window.innerHeight &&
+    left >= 0
+  );
+}

@@ -1,13 +1,14 @@
 "use client"
 
 import { useTheme } from "next-themes";
+import { useIsMounted } from "usehooks-ts";
 
-import { Button } from "@/components/ui";
+import { Button, Icon } from "@/components/ui";
 
 const ThemeSwitch = () => {
   const { theme, setTheme } = useTheme();
-
-  return (
+  const isMounted = useIsMounted();
+  return isMounted && (
     <Button
       variant="default"
       size="sm"
@@ -15,9 +16,9 @@ const ThemeSwitch = () => {
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
     >
       {theme === "light" ? (
-        <span className="i-carbon-sun text-2xl" />
+        <Icon icon="carbon:sun" className="text-2xl" />
       ) : (
-        <span className="i-carbon-moon text-2xl" />
+        <Icon icon="carbon:moon" className="text-2xl" />
       )}
     </Button>
   )

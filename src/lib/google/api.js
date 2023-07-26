@@ -143,3 +143,24 @@ export const getGoogleMediaItemsAlbum = async (bearerToken, albumId, pageToken, 
 //     return NextResponse.json(bearerToken);
 //   }
 // }
+
+const bearerToken = await getGoogleApiToken();
+
+export const getAlbums = async () => {
+  let nextPageToken = '';
+  let albums = [];
+
+  do {
+    const data = await getGoogleAlbums(bearerToken, nextPageToken);
+    if (data.albums) {
+      albums = [...albums, ...data.albums];
+    }
+    nextPageToken = data.nextPageToken;
+  } while (nextPageToken);
+
+  if (!albums) {
+    throw new Error(500, 'Unable to get albums');
+  }
+
+  return albums
+}

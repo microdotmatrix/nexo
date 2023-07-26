@@ -4,9 +4,8 @@ import { Dialog, DialogHeading, useDialogStore } from '@/components/ui';
 import { useRouter } from 'next/navigation';
 import { useIsMounted } from 'usehooks-ts';
 import { AnimatePresence, motion } from 'framer-motion';
-
 // import css from './modal.module.css';
-
+import "./style.css";
 
 import { CloseDialog } from '@/components/functions';
 
@@ -17,7 +16,7 @@ const PhotoModal = ({ children }) => {
     setOpen: (open) => !open && close(),
   });
   const router = useRouter();
-  const isMounted = useIsMounted();
+  const isMounted = dialog.useState("mounted");
 
   const close = () => router.back();
 
@@ -27,6 +26,7 @@ const PhotoModal = ({ children }) => {
         <Dialog
           store={dialog}
           alwaysVisible
+          portal={false}
           className="dialog"
           backdrop={
             <motion.div
@@ -46,9 +46,9 @@ const PhotoModal = ({ children }) => {
           }}
           render={
             <motion.div
-              initial={{ opacity: 0, x: '-50%', y: '-50%', scale: 0.8, transition: { duration: '100ms' } }}
-              animate={{ opacity: 1, x: '-50%', y: '-50%', scale: 1 }}
-              exit={{ opacity: 0, x: '-50%', y: '-50%', scale: 0.95 }}
+              initial={{ opacity: 0, scale: 0.8, transition: { duration: '100ms' } }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
             />
           }
         >
@@ -56,7 +56,9 @@ const PhotoModal = ({ children }) => {
             <CloseDialog />
           </DialogHeading>
           
-          {children}
+          <div className="content">
+            {children}
+          </div>
         </Dialog>
       )}
     </AnimatePresence>

@@ -22,7 +22,7 @@ const buttonVariants = tv({
       outline:
         "bg-transparent border border-slate-200 hover:bg-slate-100 dark:border-slate-700 dark:text-slate-100",
       subtle:
-        "bg-slate-100 text-slate-900 hover:bg-slate-200 dark:bg-slate-700 dark:text-slate-100",
+        "bg-slate-100 text-slate-900 hover:bg-slate-200 hover:text-slate-600 dark:bg-slate-500 dark:text-slate-100",
       ghost:
         "bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 dark:text-slate-100 dark:hover:text-slate-100 data-[state=open]:bg-transparent dark:data-[state=open]:bg-transparent",
       link:

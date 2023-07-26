@@ -40,6 +40,13 @@ export default async function Album({ params }) {
     return notFound();
   }
   
-  return <Gallery mediaItems={mediaItems} albumId={params.id} />
-  
+  return (
+    <Suspense fallback={
+      <div className="w-full h-full flex flex-col items-center justify-center">
+        <h1 className="text-gray-200 animate-pulse">Loading...</h1>
+      </div>
+    }>
+      <Gallery mediaItems={mediaItems} albumId={params.id} />
+    </Suspense>
+  )
 }

@@ -33,7 +33,8 @@ export const meta = {
   links: {
     github: "https://github.com/microdotmatrix",
     linkedin: "https://www.linkedin.com/in/therealjohnpolinski",
-  }
+  },
+  themeColor: "#232222",
 }
 
 export const useOfficialNotionAPI =

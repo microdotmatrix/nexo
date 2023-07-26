@@ -8,7 +8,9 @@ const CloseDialog = () => {
 
   return (
     <Button
-      variant="subtle"
+      variant="ghost"
+      size="sm"
+      className="hover:bg-transparent dark:hover:bg-transparent"
       onClick={() => router.back()}
     >
       <span className="i-carbon-close text-2xl" />

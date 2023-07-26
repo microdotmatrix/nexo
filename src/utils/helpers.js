@@ -27,6 +27,12 @@ export function clampRange(value, min = 0, max = 1) {
   return value < min ? min : value > max ? max : value
 }
 
+export function clamp(number, min, max) {
+  if (number < min) return min;
+  if (number > max) return max;
+  return number;
+}
+
 export function hasObject(recs, vals) {
   if (!recs) return false
 
@@ -38,4 +44,17 @@ export function hasObject(recs, vals) {
  
 export function cn(...inputs) {
   return twMerge(clsx(inputs))
+}
+
+export function toSlug(str) {
+  let s = str;
+  if (!s) {
+    return "";
+  }
+  s = s.toLowerCase().trim();
+  s = s.replace(/ & /g, " and ");
+  s = s.replace(/[ ]+/g, "-");
+  s = s.replace(/[-]+/g, "-");
+  s = s.replace(/[^a-z0-9-]+/g, "");
+  return s;
 }
